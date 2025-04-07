@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cstrj2lo8a227"]
+
+[ext_resource type="Script" path="res://Scenes/BeatMiser/BeatMiser.gd" id="1_6uqi0"]
+[ext_resource type="Texture2D" uid="uid://cawnmwbp7o4m5" path="res://icon.svg" id="3_6uqi0"]
+[ext_resource type="PackedScene" uid="uid://cuyd1qv0pn26e" path="res://addons/midi/MidiPlayer.tscn" id="3_ykrsh"]
+[ext_resource type="Script" path="res://test.gd" id="4_4m6u7"]
+
+[node name="Level" type="Node2D"]
+
+[node name="BeatMiser" type="Node" parent="."]
+script = ExtResource("1_6uqi0")
+
+[node name="MidiPlayer" parent="BeatMiser" instance=ExtResource("3_ykrsh")]
+file = "res://synthy_2.mid"
+playing = true
+soundfont = "res://fb01.sf2"
+
+[node name="Sprite2D" type="Sprite2D" parent="." node_paths=PackedStringArray("bm")]
+position = Vector2(526, 347)
+texture = ExtResource("3_6uqi0")
+script = ExtResource("4_4m6u7")
+bm = NodePath("../BeatMiser")
+
+[connection signal="DownBeat" from="BeatMiser" to="Sprite2D" method="_on_beat_miser_down_beat"]
+[connection signal="changed_tempo" from="BeatMiser/MidiPlayer" to="BeatMiser" method="_on_changed_tempo"]
+[connection signal="finished" from="BeatMiser/MidiPlayer" to="BeatMiser" method="_on_midi_player_finished"]
+[connection signal="midi_event" from="BeatMiser/MidiPlayer" to="BeatMiser" method="_on_midi_player_midi_event"]
