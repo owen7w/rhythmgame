@@ -16,6 +16,7 @@ data_*/
 mono_crash.*.json
 
 addons/
+assets/
 
 *.sf2
 *.mid
