@@ -11,10 +11,10 @@ config_version=5
 [application]
 
 config/name="rhythmgame"
-run/main_scene="uid://bo77f8slh1cet"
+run/main_scene="res://Scenes/test.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-DamageNumbers="*res://Singletons/DamageNumbers.gd"
+DamageNumbers="*res://Scripts/Singletons/DamageNumbers.gd"
