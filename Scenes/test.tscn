@@ -1,14 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://bo77f8slh1cet"]
+[gd_scene load_steps=6 format=3 uid="uid://bo77f8slh1cet"]
 
 [ext_resource type="Script" uid="uid://cjob4e7iqbmnb" path="res://Scenes/BeatMiser/BeatMiser.gd" id="1_8od7v"]
-[ext_resource type="PackedScene" uid="uid://cuyd1qv0pn26e" path="res://addons/midi/MidiPlayer.tscn" id="2_qc4db"]
+[ext_resource type="Script" uid="uid://bfy2pk5jpqcqe" path="res://Scripts/grid_manager.gd" id="3_o7slt"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cjg1c"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_7xgrm"]
+sky_material = SubResource("ProceduralSkyMaterial_cjg1c")
+
+[sub_resource type="Environment" id="Environment_w8ear"]
+background_mode = 2
+sky = SubResource("Sky_7xgrm")
+tonemap_mode = 2
+glow_enabled = true
 
 [node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w8ear")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
 
 [node name="BeatMiser" type="Node" parent="."]
 script = ExtResource("1_8od7v")
 metadata/_custom_type_script = "uid://cjob4e7iqbmnb"
 
-[node name="MidiPlayer" parent="BeatMiser" instance=ExtResource("2_qc4db")]
-file = "res://synthy_2wmetronome.mid"
-soundfont = "res://FB01.sf2"
+[node name="GridManager" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, -4.5, -16)
+script = ExtResource("3_o7slt")
+size = Vector3(15, 9, 16)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.5)
+current = true
+fov = 80.0
