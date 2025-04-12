@@ -13,7 +13,7 @@ func _ready() -> void:
 
 	if not Engine.is_editor_hint():
 		var p := GridPlayer.new();
-		p.position = Vector3(size.x/2, size.y/2, size.z);
+		p.position = Vector3(floor(size.x/2), floor(size.y/2), size.z-1);
 		p.mesh = BoxMesh.new();
 		p.g = self;
 		add_child(p);
@@ -51,7 +51,7 @@ func create_grid():
 
 #get the center of a cell based on cell coords
 func getDrawPosition(c: Vector3) -> Vector3:
-	return global_position + c - Vector3(0,0,0.5);
+	return global_position + c + Vector3(0.5,0.5,0.5);
 
 #get the GridActor that occupies a given cell
 func getOccupant(c: Vector3) -> GridActor:
