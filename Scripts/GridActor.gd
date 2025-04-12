@@ -16,11 +16,13 @@ func _ready() -> void:
 	meshInstance = MeshInstance3D.new();
 	meshInstance.mesh = mesh;
 	add_child(meshInstance);
+	meshInstance.global_position = g.getDrawPosition(position);
 
 #when the downbeat happens
 func beat() -> void:
-	position.z -= 1;
-	if (position.z < 0): queue_free();
+	position.z += 1;
+	if (position.z >= g.size.z): queue_free();
+	print(position)
 
 #put your visual somewhere
 func _process(_delta: float) -> void:
