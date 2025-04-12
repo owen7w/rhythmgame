@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo77f8slh1cet"]
+
+[ext_resource type="Script" uid="uid://cjob4e7iqbmnb" path="res://Scenes/BeatMiser/BeatMiser.gd" id="1_8od7v"]
+[ext_resource type="PackedScene" uid="uid://cuyd1qv0pn26e" path="res://addons/midi/MidiPlayer.tscn" id="2_qc4db"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="BeatMiser" type="Node" parent="."]
+script = ExtResource("1_8od7v")
+metadata/_custom_type_script = "uid://cjob4e7iqbmnb"
+
+[node name="MidiPlayer" parent="BeatMiser" instance=ExtResource("2_qc4db")]
+file = "res://synthy_2wmetronome.mid"
+soundfont = "res://FB01.sf2"
