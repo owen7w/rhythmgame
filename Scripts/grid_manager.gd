@@ -7,16 +7,30 @@ class_name GridManager
 		size = val;
 		create_grid();
 
+var meshes: Dictionary = {
+	"wall": QuadMesh.new(),
+};
+
+signal beat;
+
+var player: GridPlayer;
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	create_grid()
 
 	if not Engine.is_editor_hint():
-		var p := GridPlayer.new();
-		p.position = Vector3(floor(size.x/2), floor(size.y/2), size.z-1);
-		p.mesh = BoxMesh.new();
-		p.g = self;
-		add_child(p);
+		player = spawnGridActor(GridPlayer, Vector3(floor(size.x/2), floor(size.y/2), size.z-1), BoxMesh.new());
+
+func spawnGridActor(type, position: Vector3, mesh: Mesh = null) -> GridActor:
+	var p: GridActor = type.new();
+	p.position = position;
+	if (mesh):
+		p.mesh = mesh;
+	p.g = self;
+	beat.connect(p.beat)
+	add_child(p);
+	return p;
 
 func create_grid():
 	position.x = -(size.x/2.0);
@@ -61,8 +75,21 @@ func getOccupant(c: Vector3) -> GridActor:
 				return child;
 	return null;
 
+var count: int = 0;
+
 func step():
-	#tell each actor that the beat happened
+	beat.emit();
+	
+	# if (count % 4 == 0):
+	spawnGridActor(GridWall, 
+		Vector3(
+			randi_range(0, size.x-1),
+			randi_range(0,size.y-1),
+			# size.x-1,size.y-1,
+			0
+		)
+	);
+	count = (count + 1) % 4;
 	
 	#spawn new grid actors according to the level reader
-	pass
+	pass;
