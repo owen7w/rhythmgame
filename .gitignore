@@ -19,3 +19,4 @@ addons/
 
 *.sf2
 *.mid
+.vscode
