@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://btk20s4ctxu0y"]
+
+[ext_resource type="Script" uid="uid://by1gombscmdjs" path="res://scripts/grid_manager.gd" id="1_l7jj3"]
+
+[node name="GridManager" type="Node3D"]
+script = ExtResource("1_l7jj3")
+rows = 11
+cols = 11
+depth = 20
+
+[node name="Grid" type="Node3D" parent="."]
