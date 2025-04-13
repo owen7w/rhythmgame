@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bo77f8slh1cet"]
+[gd_scene load_steps=8 format=3 uid="uid://bo77f8slh1cet"]
 
 [ext_resource type="Script" uid="uid://cjob4e7iqbmnb" path="res://Scenes/BeatMiser/BeatMiser.gd" id="1_8od7v"]
+[ext_resource type="Shader" uid="uid://d34fgskqkejd3" path="res://Shaders/prox.gdshader" id="1_qc4db"]
 [ext_resource type="Script" uid="uid://bfy2pk5jpqcqe" path="res://Scripts/grid_manager.gd" id="3_o7slt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cjg1c"]
@@ -15,6 +16,13 @@ background_mode = 2
 sky = SubResource("Sky_7xgrm")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ys1qc"]
+render_priority = 0
+shader = ExtResource("1_qc4db")
+shader_parameter/charPos = Vector3(0, 0, 0)
+shader_parameter/prox_thresh_1 = 2.5
+shader_parameter/prox_thresh_2 = 1.5
 
 [node name="Node3D" type="Node3D"]
 
@@ -33,6 +41,7 @@ metadata/_custom_type_script = "uid://cjob4e7iqbmnb"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, -4.5, -16)
 script = ExtResource("3_o7slt")
 size = Vector3(15, 9, 16)
+proxMaterial = SubResource("ShaderMaterial_ys1qc")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.5)

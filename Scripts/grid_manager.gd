@@ -15,12 +15,21 @@ signal beat;
 
 var player: GridPlayer;
 
+@export var proxMaterial: Material;
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	create_grid()
+	create_grid();
 
 	if not Engine.is_editor_hint():
 		player = spawnGridActor(GridPlayer, Vector3(floor(size.x/2), floor(size.y/2), size.z-1), BoxMesh.new());
+		
+		meshes["wall"].material = proxMaterial;
+		player.moved.connect(onPlayerMoved)
+		proxMaterial.set_shader_parameter("charPos",getDrawPosition(player.position));
+
+func onPlayerMoved(loc: Vector3) ->void:
+	proxMaterial.set_shader_parameter("charPos",getDrawPosition(loc));
 
 func spawnGridActor(type, position: Vector3, mesh: Mesh = null) -> GridActor:
 	var p: GridActor = type.new();
@@ -42,10 +51,13 @@ func create_grid():
 			child.free();
 	var mesh1 := BoxMesh.new();
 	mesh1.size = Vector3(0.2,0.02,0.02);
+	mesh1.material = proxMaterial;
 	var mesh2 := BoxMesh.new();
 	mesh2.size = Vector3(0.02,0.2,0.02);
+	mesh2.material = proxMaterial;
 	var mesh3 := BoxMesh.new();
 	mesh3.size = Vector3(0.02,0.02,0.2);
+	mesh3.material = proxMaterial;
 	for row in size.x+1:
 		for col in size.y+1:
 			for i in size.z+1:
