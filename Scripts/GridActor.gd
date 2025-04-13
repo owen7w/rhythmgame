@@ -22,7 +22,6 @@ func _ready() -> void:
 func beat() -> void:
 	position.z += 1;
 	if (position.z >= g.size.z): queue_free();
-	print(position)
 
 #put your visual somewhere
 func _process(_delta: float) -> void:
