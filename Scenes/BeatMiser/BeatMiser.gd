@@ -19,6 +19,7 @@ func _ready() -> void:
 	mp.midi_event.connect(
 		func(_channel, event):
 			if (event.type == 0x90 && event.note == 0):
+				# print("downbeat")
 				DownBeat.emit();
 	)
 	DownBeat.connect(
