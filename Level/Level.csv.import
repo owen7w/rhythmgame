@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bprjr254ba2tc"
+
+[deps]
+
+files=["res://Level/Level.w.translation", "res://Level/Level.w.translation", "res://Level/Level.w.translation", "res://Level/Level.w.translation", "res://Level/Level.w.translation", "res://Level/Level.w.translation", "res://Level/Level.w.translation", "res://Level/Level.w.translation", "res://Level/Level.w.translation"]
+
+source_file="res://Level/Level.csv"
+dest_files=["res://Level/Level.w.translation", "res://Level/Level.w.translation", "res://Level/Level.w.translation", "res://Level/Level.w.translation", "res://Level/Level.w.translation", "res://Level/Level.w.translation", "res://Level/Level.w.translation", "res://Level/Level.w.translation", "res://Level/Level.w.translation"]
+
+[params]
+
+compress=true
+delimiter=0
